@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Models\Listing;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,21 +19,22 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-//change this page for denostrativce porpuse 
+//change this page for demostrative pourpose SHOW ALL  
 Route::get('/', function () {
-    return view('listings', ['heading' => 'latest listings', 'listings' => [
-        [
-            'id' => '1',
-            'title' => 'Listing One',
-            'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio placeat excepturi minus, nostrum facere ducimus et cupiditate amet aspernatur iure.'
-        ],
-        [
-            'id' => '2',
-            'title' => 'Listing Two',
-            'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio placeat excepturi minus, nostrum facere ducimus et cupiditate amet aspernatur iure.'
-        ]
-    ]]);
+    return view('listings', [
+        'heading' => 'latest listings', 'listings' => Listing::all()
+    ]);
 });
+
+
+//Show just one listing 
+
+Route::get('/listings/{id}',function($id){
+    return view('listing',[
+         'listing' => Listing::find($id)
+    ]);
+});
+
 //use the plain text 
 Route::get('/hello', function () {
     return response('Hello World From Laravel');
