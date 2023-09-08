@@ -10,6 +10,6 @@
 {{-- Blade template --}}
 <h1>{{$heading}}</h1>
 @foreach($listings as $listing)
-<h2>{{$listing['title']}}</h2>
+<a href="/listings/{{$listing['id']}}">{{$listing['title']}}<a>
 <p>{{$listing['description']}}</p>
 @endforeach
