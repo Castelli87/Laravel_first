@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\Listing;
+use App\Models\Pizza;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,8 +20,17 @@ use App\Models\Listing;
 //     return view('welcome');
 // });
 
+
+Route::get('/',function(){
+    return view ('pizzas',['pizzas' => Pizza::all()]);
+});
+
+Route::get('/pizzas/{id}',function($id){
+    return view ('pizza',['pizza'=>Pizza::find($id)]);
+});
+
 //change this page for demostrative pourpose SHOW ALL  
-Route::get('/', function () {
+Route::get('/listings', function () {
     return view('listings', [
         'heading' => 'latest listings', 'listings' => Listing::all()
     ]);

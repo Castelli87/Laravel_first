@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Pizza;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -12,11 +14,19 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\User::factory(10)->create();
+        \App\Models\User::factory(5)->create();
 
-        \App\Models\User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        Pizza::create([
+            'name' => 'Margherita',
+            'toppings' => 'Tomato sauce, mozzarella cheese, fresh basil',
+            'price' => 9.99,
+            'preparation_time' => 20, // in minutes
+        ]);
+        Pizza::create(            [
+            'name' => 'Pepperoni',
+            'toppings' => 'Tomato sauce, mozzarella cheese, pepperoni slices',
+            'price' => 11,
+            'preparation_time' => 25,
         ]);
     }
 }

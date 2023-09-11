@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('toppings');
-            $table->decimal('price',3,2);
+            $table->decimal('price',4,2);
             $table->integer('preparation_time')->nullable();
             $table->string('image')->nullable();
             $table->timestamps();
