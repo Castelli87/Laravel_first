@@ -1,7 +1,11 @@
-<h2 class="text-center">{{$pizza['name']}}</h2>
+@extends('layout')
 
-<p>{{$pizza['toppings']}}</p>
+@section('content')
+    <h2 class="">{{ $pizza['name'] }}</h2>
 
-<p>{{$pizza['price']}}</p>
+    <p>{{ $pizza['toppings'] }}</p>
 
-<p>{{$pizza['preparation_time']}} mins</p>
+    <p>{{ $pizza['price'] }}</p>
+
+    <p>{{ $pizza['preparation_time'] }} mins</p>
+@endsection

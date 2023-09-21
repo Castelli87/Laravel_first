@@ -15,10 +15,6 @@ use App\Models\Pizza;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-// //first page of demostration 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 
 
 Route::get('/',function(){
@@ -28,6 +24,28 @@ Route::get('/',function(){
 Route::get('/pizzas/{id}',function($id){
     return view ('pizza',['pizza'=>Pizza::find($id)]);
 });
+
+
+
+
+
+
+
+
+
+
+
+
+// //first page of demostration 
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+
+
+
+
+
 
 //change this page for demostrative pourpose SHOW ALL  
 Route::get('/listings', function () {
