@@ -12,17 +12,17 @@
     <div class="mx-4">
         <div class="bg-gray-50 border border-gray-200 p-10 rounded">
             <div class="flex flex-col items-center justify-center text-center">
-                <img class="w-49 mr-6 mb-6" src="{{asset('images/').'/'.$pizza->name.'.jpg'}}" alt="" />
+                <img class="w-49 mr-6 mb-6" src="{{ asset('images/') . '/' . $pizza->name . '.jpg' }}" alt="" />
 
                 <h3 class="text-2xl mb-2">{{ $pizza->name }}</h3>
                 <div class="text-xl font-bold mb-4">CATEGORY</div>
-                <ul class="flex">
-                    <li class="bg-black text-white rounded-xl px-3 py-1 mr-2">
-                        <a href="#">{{ $pizza->toppings }}</a>
+                <ul class="flex m-3">
+
+                    <x-pizza-toppings :toppings='$pizza->toppings' />
 
                 </ul>
                 <div class="text-lg my-4">
-                    £: {{ $pizza->price}}
+                    £: {{ $pizza->price }}
                 </div>
                 <div class="border border-gray-200 w-full mb-6"></div>
                 <div>
@@ -30,11 +30,10 @@
                         <p>Preparation time: {{ $pizza->preparation_time }} mins</p>
 
                         <a href='#'' class="block bg-laravel text-white mt-6  p-3 py-2 rounded-xl hover:opacity-80">
-                        ORDER THIS PIZZA</a>
+                            ORDER THIS PIZZA</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
 @endsection
