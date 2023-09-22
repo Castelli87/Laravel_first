@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('toppings');
+            $table->text('category');
             $table->decimal('price',4,2);
             $table->integer('preparation_time')->nullable();
             $table->string('image')->nullable();
