@@ -9,11 +9,12 @@ class PizzaController extends Controller
 {
     //
     public function index(){
-        return view ('pizzas',['pizzas' => Pizza::all()]);
+
+        return view ('pizzas.index',['pizzas' => Pizza::latest()->filter(request(['search']))->get()]);
     }
 
     public function show(Pizza $pizza){
-        return view ('pizza',
+        return view ('pizzas.show',
         ['pizza'=>$pizza]);
     }
 }
