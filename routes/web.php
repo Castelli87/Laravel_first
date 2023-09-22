@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PizzaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\Listing;
@@ -17,17 +18,26 @@ use App\Models\Pizza;
 */
 
 
-Route::get('/',function(){
-    return view ('pizzas',['pizzas' => Pizza::all()]);
-});
+Route::get('/',[PizzaController::class,'index']);
+
+Route::get('/pizzas/{pizza}',[PizzaController::class,'show']);
+
+
+
+/*  this one is to show somithing is there is not that id using a 404 page 
+BUT WE ARE USING THE ROUTE BINDING 
 
 Route::get('/pizzas/{id}',function($id){
-    return view ('pizza',['pizza'=>Pizza::find($id)]);
+    $pizza=Pizza::find($id);
+    if($pizza){
+        return view ('pizza',['pizza'=>$pizza]);
+        
+    }else {
+        abort(404);
+    }
 });
 
-
-
-
+ */
 
 
 
