@@ -7,7 +7,7 @@
             <h3 class="text-2xl">
                 <a href="/pizzas/{{$pizza['id']}}">{{ $pizza->name }}</a>
             </h3>
-            {{-- <div class="text-xl font-bold mb-4">{{$pizza['category']}}</div> --}}
+            <div class="text-xl font-bold mb-4">{{$pizza->category}}</div>
 
            <x-pizza-toppings :toppings='$pizza->toppings'/>
             

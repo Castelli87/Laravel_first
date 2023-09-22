@@ -15,7 +15,7 @@
                 <img class="w-49 mr-6 mb-6" src="{{ asset('images/') . '/' . $pizza->name . '.jpg' }}" alt="" />
 
                 <h3 class="text-2xl mb-2">{{ $pizza->name }}</h3>
-                <div class="text-xl font-bold mb-4">CATEGORY</div>
+                <div class="text-xl font-bold mb-4">{{$pizza->category}}</div>
                 <ul class="flex m-3">
 
                     <x-pizza-toppings :toppings='$pizza->toppings' />
