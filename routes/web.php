@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\PizzaController;
+use App\Models\Pizza;
+use App\Models\Listing;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Models\Listing;
-use App\Models\Pizza;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\PizzaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,18 @@ use App\Models\Pizza;
 Route::get('/',[PizzaController::class,'index']);
 
 Route::get('/pizzas/{pizza}',[PizzaController::class,'show']);
+
+//show the registration page
+Route::get('/register',[UserController::class,'create']);
+
+Route::post('/users',[UserController::class,'store']);
+
+Route::post('/logout',[UserController::class,'logout']);
+
+//Show just the login page 
+Route::get('/login',[UserController::class,'login']);
+
+Route::post('/users/authenticate',[UserController::class,'authenticate']);
 
 
 
