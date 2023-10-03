@@ -38,6 +38,15 @@
                     <a href="#" class="hover:text-laravel text-xl"><i class="fa-solid fa-basket-shopping"></i>
                     </a>
                 </li>
+                <li>
+                    <form  action="/logout" method="POST">
+                        @csrf
+                        <button type="submit">
+                            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                        </button>
+                    </form>
+
+                </li>
             @else
                 <li>
                     <a href="/register" class="hover:text-laravel"><i class="fa-solid fa-user-plus"></i> Register</a>

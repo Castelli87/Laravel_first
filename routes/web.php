@@ -32,10 +32,17 @@ Route::get('/',[PizzaController::class,'index']);
 
 Route::get('/pizzas/{pizza}',[PizzaController::class,'show']);
 
-
+//show the registration page
 Route::get('/register',[UserController::class,'create']);
 
 Route::post('/users',[UserController::class,'store']);
+
+Route::post('/logout',[UserController::class,'logout']);
+
+//Show just the login page 
+Route::get('/login',[UserController::class,'login']);
+
+Route::post('/users/authenticate',[UserController::class,'authenticate']);
 
 
 
