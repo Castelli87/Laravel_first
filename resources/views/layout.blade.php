@@ -20,11 +20,15 @@
                 },
             },
         };
-    </script>
+        </script>
+         <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
     <title>Lara Pizzeria</title>
 </head>
 
 <body class="mb-48">
+    
+    <x-flash-msg/>
     <nav class="flex justify-between items-center mb-4">
         <a href="/"><img class="w-24" src="{{ asset('images/logo.jpg') }}" alt="" class="logo" /></a>
         <ul class="flex space-x-6 mr-6 text-lg">
@@ -69,7 +73,6 @@
 
         @yield('footer-scripts')
     </footer>
-
 </body>
 
 </html>
