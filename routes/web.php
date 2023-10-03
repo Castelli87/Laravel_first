@@ -33,14 +33,14 @@ Route::get('/',[PizzaController::class,'index']);
 Route::get('/pizzas/{pizza}',[PizzaController::class,'show']);
 
 //show the registration page
-Route::get('/register',[UserController::class,'create']);
+Route::get('/register',[UserController::class,'create'])->middleware('guest');
 
 Route::post('/users',[UserController::class,'store']);
 
-Route::post('/logout',[UserController::class,'logout']);
+Route::post('/logout',[UserController::class,'logout'])->middleware('auth');
 
 //Show just the login page 
-Route::get('/login',[UserController::class,'login']);
+Route::get('/login',[UserController::class,'login'])->name('login')->middleware('guest');
 
 Route::post('/users/authenticate',[UserController::class,'authenticate']);
 
