@@ -41,7 +41,7 @@
                     </span>
                 </li>
                 <li>
-                    <a href="#" class="hover:text-laravel text-xl"><i class="fa-solid fa-basket-shopping"></i>
+                    <a href="/cart" class="hover:text-laravel text-xl"><i class="fa-solid fa-basket-shopping"></i>
                     </a>
                 </li>
                 <li>
