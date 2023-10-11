@@ -48,7 +48,7 @@
                     <form  action="/logout" method="POST">
                         @csrf
                         <button type="submit">
-                            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                            <i class="hover:text-laravel text-xl fa-solid fa-arrow-right-from-bracket"></i>
                         </button>
                     </form>
 

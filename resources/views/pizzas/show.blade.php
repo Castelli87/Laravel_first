@@ -23,13 +23,21 @@
                     <div class="text-lg space-y-6">
                         <p>Preparation time: {{ $pizza->preparation_time }} mins</p>
 
-                        <div class="flex justify-center items-center space-x-7">
-                            <i class="fa-solid fa-circle-minus" id="decrease"></i>
-                            <p class="text-2xl font-bold" id="number">0</p>
-                            <i class="fa-solid fa-circle-plus" id="increase"></i>
+                        {{-- IN HERE SHOULD START AND FINISH THE FORM THAT GONNA BE USED TO STORE INTO THE CART --}}
+
+                        <div class="flex justify-center items-center space-x-7 mb-7">
+                            {{-- <form action="" id="modal_add_to_cart_form"> --}}
+                                {{-- <input type="hidden" name="pizza_id" value="{{pizza->id}}"> --}}
+                                <button><i class="fa-solid fa-circle-minus" id="decrease"></i></button>
+                                <input type="text" name="quantity" placeholder="1" value="1" readonly
+                                    class=" font-bold" id="number">
+                                <button><i class="fa-solid fa-circle-plus" id="increase"></i></button>
+                                <input type="hidden" name='price' id="price" value="{{ $pizza->price }}">
+                            {{-- </form> --}}
+
                         </div>
 
-                        <a href='#' class="block bg-laravel text-white mt-6  p-3 py-2 rounded-xl hover:opacity-80">
+                        <a href='#' class=" bg-laravel text-white mt-6  p-3 py-2 rounded-xl hover:opacity-80">
                             ORDER THIS PIZZA</a>
                     </div>
                 </div>
@@ -44,27 +52,28 @@
         const increaseButton = document.getElementById('increase');
         const decreaseButton = document.getElementById('decrease');
         const numberElement = document.getElementById('number');
+        const price = document.getElementById('price')
 
         // Initialize a variable to store the current number
-        let currentNumber = 0;
+        let currentNumber = parseInt(numberElement.value);
 
-        // Function to update the number element
-        function updateNumber() {
-            numberElement.textContent = currentNumber;
-        }
 
-        // Event listener for the plus button
-        increaseButton.addEventListener('click', () => {
-            currentNumber++; // Increment the number
-            updateNumber(); // Update the displayed number
-        });
 
         // Event listener for the minus button
         decreaseButton.addEventListener('click', () => {
-            if (currentNumber > 0) {
+            if (currentNumber > 1) {
                 currentNumber--; // Decrement the number (if greater than 1)
-                updateNumber(); // Update the displayed number
+                numberElement.value = currentNumber
+                console.log(parseFloat(price.value) * currentNumber) // TOTAL PRICE
+
             }
+        });
+        // Event listener for the plus button
+        increaseButton.addEventListener('click', () => {
+            currentNumber++; // Increment the number
+            // Update the displayed number
+            numberElement.value = currentNumber
+            console.log(currentNumber * price.value)
         });
     </script>
 @endsection
