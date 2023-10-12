@@ -46,8 +46,12 @@ Route::get('/login',[UserController::class,'login'])->name('login')->middleware(
 Route::post('/users/authenticate',[UserController::class,'authenticate']);
 
 //Cart Routes
-
 Route::get('/cart',[CartController::class,'index']);
+
+
+Route::post('/cart', [CartController::class, 'store']);
+
+
 
 //////////////////////////// BELOW HERE IS JUST CODE THAT I WAS USING FOR LEARNING////////////////
 

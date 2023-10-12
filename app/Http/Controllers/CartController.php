@@ -13,4 +13,8 @@ class CartController extends Controller
         return view('cart.index');
     }
 
+    public function store(Request $request){
+        dd($request->all());
+    }
+
 }

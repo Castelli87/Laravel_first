@@ -25,20 +25,25 @@
 
                         {{-- IN HERE SHOULD START AND FINISH THE FORM THAT GONNA BE USED TO STORE INTO THE CART --}}
 
-                        <div class="flex justify-center items-center space-x-7 mb-7">
-                            {{-- <form action="" id="modal_add_to_cart_form"> --}}
-                                {{-- <input type="hidden" name="pizza_id" value="{{pizza->id}}"> --}}
-                                <button><i class="fa-solid fa-circle-minus" id="decrease"></i></button>
+                        <form method="POST" action="/cart" id="modal_add_to_cart_form">
+                            @csrf
+                            <input type="hidden" name="pizza_id" value="{{ $pizza->id }}">
+                            <input type="hidden" name="name" value="{{ $pizza->name }}">
+                            <input type="hidden" name="total_price" id="total_price" value="{{$pizza->price}}">
+
+                            <div class="flex justify-center items-center space-x-7 mb-7">
+                                <button type="button"><i class="fa-solid fa-circle-minus" id="decrease"></i></button>
                                 <input type="text" name="quantity" placeholder="1" value="1" readonly
                                     class=" font-bold" id="number">
-                                <button><i class="fa-solid fa-circle-plus" id="increase"></i></button>
+                                <button type="button"><i class="fa-solid fa-circle-plus" id="increase"></i></button>
                                 <input type="hidden" name='price' id="price" value="{{ $pizza->price }}">
-                            {{-- </form> --}}
 
-                        </div>
+                            </div>
+                            <button type="submit"
+                                class=" bg-laravel text-white mt-6  p-3 py-2 rounded-xl hover:opacity-80">
+                                ORDER THIS PIZZA</button>
 
-                        <a href='#' class=" bg-laravel text-white mt-6  p-3 py-2 rounded-xl hover:opacity-80">
-                            ORDER THIS PIZZA</a>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -53,18 +58,21 @@
         const decreaseButton = document.getElementById('decrease');
         const numberElement = document.getElementById('number');
         const price = document.getElementById('price')
+        const totalPriceElement= document.getElementById('total_price')
 
         // Initialize a variable to store the current number
         let currentNumber = parseInt(numberElement.value);
-
-
+        let currenPrice = parseFloat(totalPriceElement.value)
+    
 
         // Event listener for the minus button
         decreaseButton.addEventListener('click', () => {
             if (currentNumber > 1) {
                 currentNumber--; // Decrement the number (if greater than 1)
                 numberElement.value = currentNumber
-                console.log(parseFloat(price.value) * currentNumber) // TOTAL PRICE
+                currenPrice= currentNumber* price.value
+                totalPriceElement.value =  currenPrice
+                console.log(currentNumber* price.value)
 
             }
         });
@@ -73,6 +81,8 @@
             currentNumber++; // Increment the number
             // Update the displayed number
             numberElement.value = currentNumber
+            currenPrice= currentNumber* price.value
+            totalPriceElement.value =  currenPrice
             console.log(currentNumber * price.value)
         });
     </script>
