@@ -22,27 +22,32 @@
                 <div>
                     <div class="text-lg space-y-6">
                         <p>Preparation time: {{ $pizza->preparation_time }} mins</p>
-
+                        
                         {{-- IN HERE SHOULD START AND FINISH THE FORM THAT GONNA BE USED TO STORE INTO THE CART --}}
-
                         <form method="POST" action="/cart" id="modal_add_to_cart_form">
                             @csrf
                             <input type="hidden" name="pizza_id" value="{{ $pizza->id }}">
                             <input type="hidden" name="name" value="{{ $pizza->name }}">
-                            <input type="hidden" name="total_price" id="total_price" value="{{$pizza->price}}">
-
+                            
                             <div class="flex justify-center items-center space-x-7 mb-7">
                                 <button type="button"><i class="fa-solid fa-circle-minus" id="decrease"></i></button>
                                 <input type="text" name="quantity" placeholder="1" value="1" readonly
-                                    class=" font-bold" id="number">
+                                class="h-8 w-8 text-center font-bold" id="number">
                                 <button type="button"><i class="fa-solid fa-circle-plus" id="increase"></i></button>
                                 <input type="hidden" name='price' id="price" value="{{ $pizza->price }}">
-
+                                
+                            </div>
+                            
+                            <div class="flex justify-center items-center">
+    
+                                <label for="total_price">Total Price:£ </label>
+                                <input type="hidden " name="total_price" @readonly(true) id="total_price" value="{{$pizza->price}}" class="h-8 w-16  bg-grey-100 text-center">
+                                
                             </div>
                             <button type="submit"
-                                class=" bg-laravel text-white mt-6  p-3 py-2 rounded-xl hover:opacity-80">
-                                ORDER THIS PIZZA</button>
-
+                            class=" bg-laravel text-white mt-6  p-3 py-2 rounded-xl hover:opacity-80">
+                            ORDER THIS PIZZA</button>
+                            
                         </form>
                     </div>
                 </div>
@@ -62,7 +67,7 @@
 
         // Initialize a variable to store the current number
         let currentNumber = parseInt(numberElement.value);
-        let currenPrice = parseFloat(totalPriceElement.value)
+        let currenPrice = totalPriceElement.value
     
 
         // Event listener for the minus button
@@ -71,7 +76,7 @@
                 currentNumber--; // Decrement the number (if greater than 1)
                 numberElement.value = currentNumber
                 currenPrice= currentNumber* price.value
-                totalPriceElement.value =  currenPrice
+                totalPriceElement.value = currenPrice.toFixed(2)
                 console.log(currentNumber* price.value)
 
             }
@@ -82,7 +87,7 @@
             // Update the displayed number
             numberElement.value = currentNumber
             currenPrice= currentNumber* price.value
-            totalPriceElement.value =  currenPrice
+            totalPriceElement.value = currenPrice.toFixed(2)
             console.log(currentNumber * price.value)
         });
     </script>

@@ -49,7 +49,7 @@ Route::post('/users/authenticate',[UserController::class,'authenticate']);
 Route::get('/cart',[CartController::class,'index']);
 
 
-Route::post('/cart', [CartController::class, 'store']);
+Route::post('/cart', [CartController::class, 'store'])->middleware('auth');;
 
 
 
