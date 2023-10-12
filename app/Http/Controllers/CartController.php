@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pizza;
+use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
+
 
 class CartController extends Controller
 {
@@ -14,7 +17,18 @@ class CartController extends Controller
     }
 
     public function store(Request $request){
-        dd($request->all());
+        $pizza = Pizza::findOrFail($request -> pizza_id);
+
+       Cart::add([
+        'id'=>$pizza->id,
+        'name'=>$pizza->name,
+        'qty'=>$request ->quantity,
+        'price'=>$pizza ->price,
+        'weight'=>$request->total_price,    
+       ]);
+
+       return redirect('/')->with('message', 'Items added to cart');
     }
+    
 
 }
