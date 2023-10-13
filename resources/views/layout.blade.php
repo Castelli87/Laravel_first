@@ -20,16 +20,16 @@
                 },
             },
         };
-        </script>
-        
-         <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    </script>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
     <title>Lara Pizzeria</title>
 </head>
 
 <body class="mb-48">
-    
-    <x-flash-msg/>
+
+    <x-flash-msg />
 
     <nav class="flex justify-between items-center mb-4">
         <a href="/"><img class="w-24" src="{{ asset('images/logo.jpg') }}" alt="" class="logo" /></a>
@@ -40,15 +40,15 @@
                         Welcome {{ auth()->user()->name }}
                     </span>
                 </li>
-                <li >
+                <li>
                     <a href="/cart" class="hover:text-laravel text-xl"><i class="fa-solid fa-basket-shopping"></i>
                         @if (Cart::content()->count() !== 0)
-                        <span class="text-sm text-bold p-1 ">{{Cart::count()}}</span>
+                            <span class="text-sm text-bold p-1 ">{{ Cart::count() }}</span>
                         @endif
                     </a>
                 </li>
                 <li>
-                    <form  action="/logout" method="POST">
+                    <form action="/logout" method="POST">
                         @csrf
                         <button type="submit">
                             <i class="hover:text-laravel text-xl fa-solid fa-arrow-right-from-bracket"></i>

@@ -51,6 +51,8 @@ Route::get('/cart',[CartController::class,'index']);
 
 Route::post('/cart', [CartController::class, 'store'])->middleware('auth');;
 
+Route::get('/cart/clear',[CartController::class,'destroy']);
+
 
 
 //////////////////////////// BELOW HERE IS JUST CODE THAT I WAS USING FOR LEARNING////////////////

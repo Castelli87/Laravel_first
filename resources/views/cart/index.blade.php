@@ -6,12 +6,12 @@
         <div class="  bg-white p-4 rounded-md shadow-lg ">
             <h1 class="text-4xl text-center font-semibold mt-4 mb-9">Basket Shop</h1>
             <div class="hidden md:flex items-center border-b-2 border-gray-300 mb-4 font-black text-2xl">
-                <div class="w-1/6 font-black text-2xl">Image</div>
-                <div class="w-2/6">Details</div>
-                <div class="w-1/6 ml-5">Price</div>
-                <div class="w-1/6">Quantity</div>
-                <div class="w-1/6">Total</div>
-                <div class="w-1/6 text-right">Clear All</div>
+                <div class="w-1/6 font-black text-2xl m-4">Image</div>
+                <div class="w-2/6 m-4">Details</div>
+                <div class="w-1/6 m-4 ml-5">Price</div>
+                <div class="w-1/6 m-4">Quantity</div>
+                <div class="w-1/6 m-4 ">Total</div>
+                <div class="w-1/6 m-4 text-right"><a class="border border-2 border-black p-1" href="/cart/clear">Clear All</a></div>
             </div>
             @foreach (Cart::content() as $pizza)
                 <div class="flex flex-col mx-auto md:flex-row items-center border-b-2 border-gray-300 py-5 mb-3 text-xl">
