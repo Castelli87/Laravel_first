@@ -27,14 +27,15 @@
                     </div>
                     <div class="mb-3 md:w-1/6 md:pl-4">
                         <div class="flex items-center">
-                            <button type="button"><i class="fa-solid fa-circle-minus text-xl " id="increase"></i></button>
-                            <input type="text" value="{{$pizza->qty}}"class="h-10 w-10 text-center text-2xl font-bold mx-2"
+                            {{-- <button type="button"><i class="fa-solid fa-circle-minus text-xl " id="increase"></i></button> --}}
+                            <input type="text" readonly
+                                value="{{ $pizza->qty }}"class="h-10 w-10 text-center text-2xl font-bold mx-2"
                                 id="number"">
-                            <button type="button"><i class="fa-solid fa-circle-plus text-xl" id="increase"></i></button>
+                            {{-- <button type="button"><i class="fa-solid fa-circle-plus text-xl" id="increase"></i></button> --}}
                         </div>
                     </div>
                     <div class="mb-3 md:w-1/6 md:pl-4">
-                        <p>£{{ $pizza->weight }}</p>
+                        <p>£{{ $pizza->qty * $pizza->price }}</p>
                     </div>
                     <div class="md:w-1/6 md:pl-4 text-right">
                         <button
@@ -49,5 +50,15 @@
 
 
         </div>
+        <div class="md:w-2/4 bg-white p-4 rounded-md shadow-lg mt-6 mx-auto">
+            <div class="mt-4 flex justify-between">
+                <p class="text-2xl font-semibold">Total Cart:</p>
+                <p class="text-2xl font-semibold"> £{{ Cart::subtotal() }}</p>
+            </div>
+            <button
+                class="w-full mt-4 p-2 bg-laravel text-white font-bold rounded-md hover:bg-red-700">Checkout</button>
+        </div>
+    </div>
+
     </div>
 @endsection

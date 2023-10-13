@@ -40,8 +40,11 @@
                         Welcome {{ auth()->user()->name }}
                     </span>
                 </li>
-                <li>
+                <li >
                     <a href="/cart" class="hover:text-laravel text-xl"><i class="fa-solid fa-basket-shopping"></i>
+                        @if (Cart::content()->count() !== 0)
+                        <span class="text-sm text-bold p-1 ">{{Cart::count()}}</span>
+                        @endif
                     </a>
                 </li>
                 <li>
