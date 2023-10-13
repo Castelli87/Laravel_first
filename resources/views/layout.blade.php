@@ -40,15 +40,18 @@
                         Welcome {{ auth()->user()->name }}
                     </span>
                 </li>
-                <li>
-                    <a href="#" class="hover:text-laravel text-xl"><i class="fa-solid fa-basket-shopping"></i>
+                <li >
+                    <a href="/cart" class="hover:text-laravel text-xl"><i class="fa-solid fa-basket-shopping"></i>
+                        @if (Cart::content()->count() !== 0)
+                        <span class="text-sm text-bold p-1 ">{{Cart::count()}}</span>
+                        @endif
                     </a>
                 </li>
                 <li>
                     <form  action="/logout" method="POST">
                         @csrf
                         <button type="submit">
-                            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                            <i class="hover:text-laravel text-xl fa-solid fa-arrow-right-from-bracket"></i>
                         </button>
                     </form>
 

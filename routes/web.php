@@ -4,6 +4,7 @@ use App\Models\Pizza;
 use App\Models\Listing;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PizzaController;
 
@@ -43,6 +44,13 @@ Route::post('/logout',[UserController::class,'logout'])->middleware('auth');
 Route::get('/login',[UserController::class,'login'])->name('login')->middleware('guest');
 
 Route::post('/users/authenticate',[UserController::class,'authenticate']);
+
+//Cart Routes
+Route::get('/cart',[CartController::class,'index']);
+
+
+Route::post('/cart', [CartController::class, 'store'])->middleware('auth');;
+
 
 
 //////////////////////////// BELOW HERE IS JUST CODE THAT I WAS USING FOR LEARNING////////////////
