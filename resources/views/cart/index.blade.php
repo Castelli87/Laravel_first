@@ -6,12 +6,13 @@
         <div class="  bg-white p-4 rounded-md shadow-lg ">
             <h1 class="text-4xl text-center font-semibold mt-4 mb-9">Basket Shop</h1>
             <div class="hidden md:flex items-center border-b-2 border-gray-300 mb-4 font-black text-2xl">
-                <div class="w-1/6 font-black text-2xl m-4">Image</div>
-                <div class="w-2/6 m-4">Details</div>
-                <div class="w-1/6 m-4 ml-5">Price</div>
-                <div class="w-1/6 m-4">Quantity</div>
-                <div class="w-1/6 m-4 ">Total</div>
-                <div class="w-1/6 m-4 text-right"><a class="border border-2 border-black p-1" href="/cart/clear">Clear All</a></div>
+                <div class="w-1/6 font-black text-2xl mb-4">Image</div>
+                <div class="w-2/6 mb-4">Details</div>
+                <div class="w-1/6 mb-4 ml-5">Price</div>
+                <div class="w-1/6 mb-4">Quantity</div>
+                <div class="w-1/6 mb-4 ">Total</div>
+                <div class="w-1/6 mb-4 text-right"><a class="border border-2 border-black p-1" class="bg-red-500 text-white p-1 rounded-md" href="/cart/clear">Clear
+                        All</a></div>
             </div>
             @foreach (Cart::content() as $pizza)
                 <div class="flex flex-col mx-auto md:flex-row items-center border-b-2 border-gray-300 py-5 mb-3 text-xl">
@@ -38,8 +39,10 @@
                         <p>£{{ $pizza->qty * $pizza->price }}</p>
                     </div>
                     <div class="md:w-1/6 md:pl-4 text-right">
-                        <a  href="/cart/{{$pizza->rowId}}"
-                            class="w-8 h-8 border rounded-md text-white font-bold bg-laravel hover:bg-red-700">X</a>
+                        {{-- <a  href="/cart/{{$pizza->rowId}}"
+                            class="w-8 h-8 border rounded-md text-white font-bold bg-laravel hover:bg-red-700">X</a> --}}
+                        <button class="remove-from-cart-btn bg-red-500 text-white p-1 rounded-md"
+                            data-id="{{ $pizza->rowId }}">Remove</button>
 
                     </div>
                 </div>
@@ -55,15 +58,48 @@
                 <p class="text-2xl font-semibold">Total Cart:</p>
                 <p class="text-2xl font-semibold"> £{{ Cart::subtotal() }}</p>
             </div>
-            <button
-                class="w-full mt-4 p-2 bg-laravel text-white font-bold rounded-md hover:bg-red-700">Checkout</button>
+            <button class="w-full mt-4 p-2 bg-laravel text-white font-bold rounded-md hover:bg-red-700">Checkout</button>
         </div>
     </div>
 
     </div>
 @endsection
 @section('footer-scripts')
-<script>
-console.log();
-</script>
+    <script>
+        $(document).ready(function() {
+
+            $('.remove-from-cart-btn').click(function(e) {
+                e.preventDefault();
+                let rowId = $(this).data('id');
+                removeCartProduct(rowId);
+                $(this).closest('.flex').remove();})
+            
+            function  removeCartProduct(rowId){
+                $.ajax({
+                    method:'get',
+                    url:'/cart/{rowId}'.replace("{rowId}",rowId),
+                })
+            }
+                // Make an AJAX request to remove the product from the cart
+                // $.ajax({
+                //     type: 'DELETE',
+                //     url: '/cart/' + productId,
+                //     headers: {
+                //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                //     },
+                    // success: function(data) {
+                        // Handle success, for example, you can remove the product from the UI
+                        // or update the total cart amount
+                        // $(this).closest('.flex').remove(); // Remove the product from the UI
+                        // Update the cart total, if necessary
+                        // alert(data.message);
+                //     },
+                //     error: function(error) {
+                //         // Handle errors, if any
+                //         console.error(error);
+                //     }
+                // });
+           // });
+        });
+    </script>
 @endsection
