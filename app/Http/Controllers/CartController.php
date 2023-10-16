@@ -27,6 +27,7 @@ class CartController extends Controller
             'qty' => $request->quantity,
             'price' => $pizza->price,
             'weight' => $request->total_price,
+            'rowId'=> $request -> rowId,
         ]);
 
         return redirect('/')->with('message', 'Items added to cart');
@@ -35,6 +36,14 @@ class CartController extends Controller
     public function destroy()
     {
         Cart::destroy();
+        return view('cart.index');
+    }
+    public function cartRemovePizza ($rowId){
+
+      
+
+        Cart::remove($rowId);
+
         return view('cart.index');
     }
 }

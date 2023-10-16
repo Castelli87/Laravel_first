@@ -30,7 +30,7 @@
                             {{-- <button type="button"><i class="fa-solid fa-circle-minus text-xl " id="increase"></i></button> --}}
                             <input type="text" readonly
                                 value="{{ $pizza->qty }}"class="h-10 w-10 text-center text-2xl font-bold mx-2"
-                                id="number"">
+                                id="number">
                             {{-- <button type="button"><i class="fa-solid fa-circle-plus text-xl" id="increase"></i></button> --}}
                         </div>
                     </div>
@@ -38,8 +38,8 @@
                         <p>£{{ $pizza->qty * $pizza->price }}</p>
                     </div>
                     <div class="md:w-1/6 md:pl-4 text-right">
-                        <button
-                            class="w-8 h-8 border rounded-md text-white font-bold bg-laravel hover:bg-red-700">X</button>
+                        <a  href="/cart/{{$pizza->rowId}}"
+                            class="w-8 h-8 border rounded-md text-white font-bold bg-laravel hover:bg-red-700">X</a>
 
                     </div>
                 </div>
@@ -61,4 +61,9 @@
     </div>
 
     </div>
+@endsection
+@section('footer-scripts')
+<script>
+console.log();
+</script>
 @endsection
