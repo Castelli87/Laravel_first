@@ -36,11 +36,13 @@ class CartController extends Controller
     public function destroy()
     {
         Cart::destroy();
-        return view('cart.index')->with('message', 'All Pizzas removed');;
+        return redirect('/cart')->with('message', 'All Pizzas removed');;
     }
     
     public function cartRemovePizza ($rowId){
+        
         Cart::remove($rowId);
-        return view('cart.index')->with('message', 'Pizza removed');
+        
+        return redirect('/cart')->with('message', 'Pizza removed');
     }
 }

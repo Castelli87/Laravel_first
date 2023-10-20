@@ -11,7 +11,8 @@
                 <div class="w-1/6 mb-4 ml-5">Price</div>
                 <div class="w-1/6 mb-4">Quantity</div>
                 <div class="w-1/6 mb-4 ">Total</div>
-                <div class="w-1/6 mb-4 text-right"><a class="border border-2 border-black p-1" class="bg-red-500 text-white p-1 rounded-md" href="/cart/clear">Clear
+                <div class="w-1/6 mb-4 text-right"><a 
+                        class="bg-laravel text-white p-1 rounded-md hover:bg-red-700" href="/cart/clear">Clear
                         All</a></div>
             </div>
             @foreach (Cart::content() as $pizza)
@@ -28,21 +29,23 @@
                     </div>
                     <div class="mb-3 md:w-1/6 md:pl-4">
                         <div class="flex items-center">
-                            {{-- <button type="button"><i class="fa-solid fa-circle-minus text-xl " id="increase"></i></button> --}}
-                            <input type="text" readonly
-                                value="{{ $pizza->qty }}"class="h-10 w-10 text-center text-2xl font-bold mx-2"
-                                id="number">
-                            {{-- <button type="button"><i class="fa-solid fa-circle-plus text-xl" id="increase"></i></button> --}}
+                            <button type="button"class="decrement"><i class="fa-solid fa-circle-minus text-xl "
+                                    id="decrease"></i></button>
+
+                            <input type="text" readonly value="{{ $pizza->qty }}" data-id="{{ $pizza->rowId }}"
+                                class="quantity class='h-10 w-10 text-center text-2xl font-bold mx-2" id="number">
+                            <button type="button" class="increment"><i class="fa-solid fa-circle-plus text-xl"
+                                    id="increase"></i></button>
                         </div>
                     </div>
                     <div class="mb-3 md:w-1/6 md:pl-4">
                         <p>£{{ $pizza->qty * $pizza->price }}</p>
                     </div>
                     <div class="md:w-1/6 md:pl-4 text-right">
-                        {{-- <a  href="/cart/{{$pizza->rowId}}"
-                            class="w-8 h-8 border rounded-md text-white font-bold bg-laravel hover:bg-red-700">X</a> --}}
-                        <button class="remove-from-cart-btn bg-red-500 text-white p-1 rounded-md"
-                            data-id="{{ $pizza->rowId }}">Remove</button>
+                        <a href="/cart/{{ $pizza->rowId }}"
+                            class="p-2  rounded-md text-white font-bold bg-laravel hover:bg-red-700">Remove</a>
+                        {{-- <button class="remove-from-cart-btn bg-red-500 text-white p-1 rounded-md"
+                            data-id="{{ $pizza->rowId }}">Remove</button> --}}
 
                     </div>
                 </div>
@@ -66,40 +69,27 @@
 @endsection
 @section('footer-scripts')
     <script>
-        $(document).ready(function() {
+        document.addEventListener("DOMContentLoaded", function() {
+            document.querySelectorAll('.increment').forEach(function(button) {
+                button.addEventListener('click', function() {
+                    let inputField = this.parentElement.querySelector(".quantity");
+                    
+                    let currentValue = parseInt(inputField.value);
+                    inputField.value = currentValue + 1;
+                   
+                });
+            })
 
-            $('.remove-from-cart-btn').click(function(e) {
-                e.preventDefault();
-                let rowId = $(this).data('id');
-                removeCartProduct(rowId);
-                $(this).closest('.flex').remove();})
-            
-            function  removeCartProduct(rowId){
-                $.ajax({
-                    method:'get',
-                    url:'/cart/{rowId}'.replace("{rowId}",rowId),
-                })
-            }
-                // Make an AJAX request to remove the product from the cart
-                // $.ajax({
-                //     type: 'DELETE',
-                //     url: '/cart/' + productId,
-                //     headers: {
-                //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                //     },
-                    // success: function(data) {
-                        // Handle success, for example, you can remove the product from the UI
-                        // or update the total cart amount
-                        // $(this).closest('.flex').remove(); // Remove the product from the UI
-                        // Update the cart total, if necessary
-                        // alert(data.message);
-                //     },
-                //     error: function(error) {
-                //         // Handle errors, if any
-                //         console.error(error);
-                //     }
-                // });
-           // });
+            document.querySelectorAll('.decrement').forEach(function(button) {
+                button.addEventListener('click', function() {
+                    
+                    let inputField = this.parentElement.querySelector(".quantity");
+                    let currentValue = parseInt(inputField.value);
+                    if (currentValue > 1) {
+                        inputField.value = currentValue - 1;
+                    }
+                });
+            });
         });
     </script>
 @endsection
