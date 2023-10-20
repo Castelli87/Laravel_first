@@ -33,7 +33,7 @@
                                 {{-- @csrf --}}
                                 {{-- @method('PATCH') --}}
                                 {{-- <input type="hidden" name="row_Id" value="{{$pizza->rowId}}"> --}}
-                                <button type="button"class="decrement"><i class="fa-solid fa-circle-minus text-xl "
+                                <button type="submit"class="decrement"><i class="fa-solid fa-circle-minus text-xl "
                                         id="decrease"></i></button>
                                 <input type="text" readonly value="{{$pizza->qty}}" name='quantity'
                                     class="quantity class='h-10 w-10 text-center text-2xl font-bold mx-2" id="number">
