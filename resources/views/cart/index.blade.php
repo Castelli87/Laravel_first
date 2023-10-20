@@ -29,13 +29,17 @@
                     </div>
                     <div class="mb-3 md:w-1/6 md:pl-4">
                         <div class="flex items-center">
-                            <button type="button"class="decrement"><i class="fa-solid fa-circle-minus text-xl "
-                                    id="decrease"></i></button>
-
-                            <input type="text" readonly value="{{ $pizza->qty }}" data-id="{{ $pizza->rowId }}"
-                                class="quantity class='h-10 w-10 text-center text-2xl font-bold mx-2" id="number">
-                            <button type="button" class="increment"><i class="fa-solid fa-circle-plus text-xl"
-                                    id="increase"></i></button>
+                            <form  method="GET" action="/cart/{{ $pizza->rowId }}">
+                                {{-- @csrf --}}
+                                {{-- @method('PATCH') --}}
+                                {{-- <input type="hidden" name="row_Id" value="{{$pizza->rowId}}"> --}}
+                                <button type="button"class="decrement"><i class="fa-solid fa-circle-minus text-xl "
+                                        id="decrease"></i></button>
+                                <input type="text" readonly value="{{$pizza->qty}}" name='quantity'
+                                    class="quantity class='h-10 w-10 text-center text-2xl font-bold mx-2" id="number">
+                                <button type="submit" class="increment"><i class="fa-solid fa-circle-plus text-xl"
+                                        id="increase"></i></button>
+                            </form>
                         </div>
                     </div>
                     <div class="mb-3 md:w-1/6 md:pl-4">

@@ -45,4 +45,12 @@ class CartController extends Controller
         
         return redirect('/cart')->with('message', 'Pizza removed');
     }
+
+    public function cartUpdate (Request $request ,$rowId){
+       $qty= $request->input('quantity');
+
+       Cart::update($rowId,$qty);
+       
+       return redirect('/cart')->with('message', 'Cart Updated');
+    }
 }

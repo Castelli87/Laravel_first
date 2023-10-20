@@ -48,13 +48,13 @@ Route::post('/users/authenticate',[UserController::class,'authenticate']);
 //Cart Routes
 Route::get('/cart',[CartController::class,'index']);
 
-
 Route::post('/cart', [CartController::class, 'store'])->middleware('auth');;
 
 Route::get('/cart/clear',[CartController::class,'destroy']);
 
 Route::get('/cart/{rowId}',[CartController::class,'cartRemovePizza']);
 
+Route::get('/cart/{rowId}',[CartController::class,'cartUpdate']);
 
 
 //////////////////////////// BELOW HERE IS JUST CODE THAT I WAS USING FOR LEARNING////////////////
