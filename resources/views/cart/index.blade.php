@@ -65,7 +65,7 @@
                 <p class="text-2xl font-semibold">Total Cart:</p>
                 <p class="text-2xl font-semibold"> £{{ Cart::subtotal() }}</p>
             </div>
-            <button class="w-full mt-4 p-2 bg-laravel text-white font-bold rounded-md hover:bg-red-700">Checkout</button>
+            <button class="w-full mt-4 p-2 bg-laravel text-white font-bold rounded-md hover:bg-red-700"><a  href="/checkout">Checkout</a></button>
         </div>
     </div>
 
