@@ -5,8 +5,10 @@ use App\Models\Listing;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckOutController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PizzaController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -55,6 +57,10 @@ Route::get('/cart/clear',[CartController::class,'destroy']);
 Route::get('/cart/{rowId}',[CartController::class,'cartRemovePizza']);
 
 Route::get('/cart/{rowId}',[CartController::class,'cartUpdate']);
+
+//Checkout Routes
+
+Route::get('/checkout',[CheckOutController::class,'index']);
 
 
 //////////////////////////// BELOW HERE IS JUST CODE THAT I WAS USING FOR LEARNING////////////////
