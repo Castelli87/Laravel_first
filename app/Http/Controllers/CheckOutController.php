@@ -8,6 +8,7 @@ class CheckOutController extends Controller
 {
     //
     public function index(){
+        
         return view ('checkout.index');
     }
 }
